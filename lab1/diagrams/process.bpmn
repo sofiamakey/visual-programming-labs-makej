@@ -26,11 +26,11 @@
     <bpmn:sequenceFlow id="Flow_151ctj8" sourceRef="Activity_0r56f6r" targetRef="Gateway_0egzfvx" />
     <bpmn:task id="Activity_0vt0kki" name="Генирация ваучера">
       <bpmn:incoming>Flow_0odptpg</bpmn:incoming>
-      <bpmn:outgoing>Flow_0m4vbmw</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1wlaoou</bpmn:outgoing>
     </bpmn:task>
     <bpmn:endEvent id="Event_1wi3ue1" name="конец">
       <bpmn:incoming>Flow_1qmvfbu</bpmn:incoming>
-      <bpmn:incoming>Flow_0m4vbmw</bpmn:incoming>
+      <bpmn:incoming>Flow_196z79c</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0irqimn" sourceRef="StartEvent_0vmor99" targetRef="Activity_0hbxo82" />
     <bpmn:sequenceFlow id="Flow_0l5d3c7" sourceRef="Activity_0hbxo82" targetRef="Gateway_13a075p" />
@@ -38,7 +38,12 @@
     <bpmn:sequenceFlow id="Flow_1aqe6vr" name="да" sourceRef="Gateway_13a075p" targetRef="Activity_0r56f6r" />
     <bpmn:sequenceFlow id="Flow_02qfoe8" name="нет" sourceRef="Gateway_0egzfvx" targetRef="Activity_0r56f6r" />
     <bpmn:sequenceFlow id="Flow_0odptpg" name="да" sourceRef="Gateway_0egzfvx" targetRef="Activity_0vt0kki" />
-    <bpmn:sequenceFlow id="Flow_0m4vbmw" sourceRef="Activity_0vt0kki" targetRef="Event_1wi3ue1" />
+    <bpmn:task id="Activity_0szkgz0" name="Отправка SMS с кодом">
+      <bpmn:incoming>Flow_1wlaoou</bpmn:incoming>
+      <bpmn:outgoing>Flow_196z79c</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1wlaoou" sourceRef="Activity_0vt0kki" targetRef="Activity_0szkgz0" />
+    <bpmn:sequenceFlow id="Flow_196z79c" sourceRef="Activity_0szkgz0" targetRef="Event_1wi3ue1" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0ir2n9y">
@@ -74,6 +79,10 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="955" y="325" width="30" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0szkgz0_di" bpmnElement="Activity_0szkgz0">
+        <dc:Bounds x="920" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_151ctj8_di" bpmnElement="Flow_151ctj8">
         <di:waypoint x="730" y="110" />
@@ -120,8 +129,12 @@
           <dc:Bounds x="871" y="92" width="13" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0m4vbmw_di" bpmnElement="Flow_0m4vbmw">
+      <bpmndi:BPMNEdge id="Flow_1wlaoou_di" bpmnElement="Flow_1wlaoou">
         <di:waypoint x="970" y="150" />
+        <di:waypoint x="970" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_196z79c_di" bpmnElement="Flow_196z79c">
+        <di:waypoint x="970" y="250" />
         <di:waypoint x="970" y="282" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
