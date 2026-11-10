@@ -1,0 +1,33 @@
+{
+  "version": "6",
+  "id": "template-lead-gen-support",
+  "name": "Lead Generation & Support Bot (Base Template)",
+  "events": [{ "id": "ev-start", "type": "start", "graphCoordinates": { "x": 0, "y": 0 }, "outgoingEdgeId": "e-1" }],
+  "groups": [
+    {
+      "id": "g-1",
+      "title": "Welcome & Identification",
+      "graphCoordinates": { "x": 200, "y": 0 },
+      "blocks": [
+        { "id": "b-1", "type": "text", "content": { "richText": [{ "type": "p", "children": [{ "text": "Hello! Welcome to our automated customer service." }] }] } },
+        { "id": "b-3", "type": "text input", "options": { "labels": { "placeholder": "Type your name here...", "button": "Send" }, "variableId": "v-name" }, "outgoingEdgeId": "e-2" }
+      ]
+    },
+    {
+      "id": "g-2",
+      "title": "Contact Details",
+      "graphCoordinates": { "x": 560, "y": 0 },
+      "blocks": [
+        { "id": "b-4", "type": "text", "content": { "richText": [{ "type": "p", "children": [{ "text": "Nice to meet you, {{userName}}! Please enter your contact email." }] }] } },
+        { "id": "b-5", "type": "email input", "options": { "labels": { "placeholder": "example@domain.com", "button": "Send" }, "variableId": "v-email" } }
+      ]
+    }
+  ],
+  "edges": [
+    { "id": "e-1", "from": { "eventId": "ev-start" }, "to": { "groupId": "g-1" } },
+    { "id": "e-2", "from": { "blockId": "b-3" }, "to": { "groupId": "g-2" } }
+  ],
+  "variables": [{ "id": "v-name", "name": "userName" }, { "id": "v-email", "name": "userEmail" }],
+  "theme": {},
+  "settings": {}
+}

@@ -1,1 +1,54 @@
-﻿{"version":"6","name":"1ab5-makej-bot","events":[],"groups":[]}
+{
+  "version": "6",
+  "id": "typebot-makej-ii241",
+  "name": "Интеллектуальный помощник поддержки (Макей ИИ-241)",
+  "events": [{ "id": "ev-start", "type": "start", "graphCoordinates": { "x": 0, "y": 0 }, "outgoingEdgeId": "e-start" }],
+  "groups": [
+    {
+      "id": "grp-1",
+      "title": "1. Приветствие и авторство",
+      "graphCoordinates": { "x": 180, "y": 0 },
+      "blocks": [
+        { "id": "b-1", "type": "text", "content": { "richText": [{ "type": "p", "children": [{ "text": "Здравствуйте! Вас приветствует автоматизированный помощник службы сервиса." }] }] } },
+        { "id": "b-2", "type": "text", "content": { "richText": [{ "type": "p", "children": [{ "text": "Проект подготовлен студенткой группы ИИ-241 Макей Софией (Лабораторная работа №5: Чат-боты, Трек C TypeBot)." }] }] } },
+        { "id": "b-4", "type": "text input", "options": { "labels": { "placeholder": "Введите ваше полное имя...", "button": "Отправить" }, "variableId": "v-name" }, "outgoingEdgeId": "e-1-2" }
+      ]
+    },
+    {
+      "id": "grp-6",
+      "title": "6. Логическое ветвление",
+      "graphCoordinates": { "x": 600, "y": 0 },
+      "blocks": [
+        {
+          "id": "b-13",
+          "type": "Condition",
+          "items": [{ "id": "cond-1", "content": { "comparisons": [{ "id": "cmp-1", "variableId": "v-rating", "comparisonOperator": "Contains", "value": "⭐⭐⭐⭐" }] }, "outgoingEdgeId": "e-6-8" }],
+          "outgoingEdgeId": "e-6-8"
+        }
+      ]
+    },
+    {
+      "id": "grp-8",
+      "title": "8. HTTP Request / Webhook",
+      "graphCoordinates": { "x": 1000, "y": 0 },
+      "blocks": [
+        { "id": "b-18", "type": "Webhook", "options": { "webhook": { "url": "https://httpbin.org/post", "method": "POST" } } }
+      ]
+    }
+  ],
+  "edges": [
+    { "id": "e-start", "from": { "eventId": "ev-start" }, "to": { "groupId": "grp-1" } },
+    { "id": "e-1-2", "from": { "blockId": "b-4" }, "to": { "groupId": "grp-6" } },
+    { "id": "e-6-8", "from": { "blockId": "b-13" }, "to": { "groupId": "grp-8" } }
+  ],
+  "variables": [
+    { "id": "v-name", "name": "userName" },
+[12.11.2026 9:18] Perhat: { "id": "v-email", "name": "userEmail" },
+    { "id": "v-group", "name": "studentGroup" },
+    { "id": "v-service", "name": "selectedService" },
+    { "id": "v-rating", "name": "satisfactionRating" },
+    { "id": "v-feedback", "name": "feedbackNotes" }
+  ],
+  "theme": {},
+  "settings": {}
+}
